@@ -4,7 +4,7 @@
 help:
 	@echo "Available targets:"
 	@echo "  make gokatas [ARGS=...]        - Run gokatas with optional arguments"
-	@echo "  make updatekatas [ARGS=...]    - Run updatekatas with optional arguments"
+	@echo "  make updatekatas [ARG ...]     - Run updatekatas with arguments for -k flag"
 	@echo "  make build                     - Build both binaries"
 	@echo "  make gokatas-build             - Build gokatas binary"
 	@echo "  make updatekatas-build         - Build updatekatas binary"
@@ -13,15 +13,20 @@ help:
 	@echo "Examples:"
 	@echo "  make gokatas"
 	@echo "  make gokatas ARGS=\"-verbose\""
-	@echo "  make updatekatas ARGS=\"-dry-run\""
+	@echo "  make updatekatas test"
+	@echo "  make updatekatas test another_arg"
 
 # Run gokatas with optional arguments
 gokatas:
 	go run ./cmd/gokatas $(ARGS)
 
-# Run updatekatas with optional arguments
+# Run updatekatas with arguments forwarded to -k flag
 updatekatas:
-	go run ./cmd/updatekatas $(ARGS)
+	go run ./cmd/updatekatas -k $(filter-out $@,$(MAKECMDGOALS))
+
+# Catch-all rule to prevent make from complaining about extra arguments
+%:
+	@:
 
 # Build both binaries
 build: gokatas-build updatekatas-build
