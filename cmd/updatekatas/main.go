@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 const KatasFile = "katas.md"
@@ -20,12 +21,25 @@ func main() {
 		os.Exit(0)
 	}
 
+	// take in argument of kata completed
 	if *kata == "" {
 		log.Fatal("-k flag not set. You need to provide a kata name")
 	}
-	fmt.Printf("updatekatas: %s", *kata)
 
-	// take in argument of kata completed
-
+	line := fmt.Sprintf("- %s: %s\n", time.Now().Format(time.DateOnly), *kata)
 	// append to file - YYYY-MM-DD: <kata file>
+
+	file, err := os.OpenFile(KatasFile, os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+
+	if err != nil {
+		log.Fatalf("error reading file: %v", err)
+	}
+	defer file.Close()
+	_, err = file.Write([]byte(line))
+
+	if err != nil {
+		log.Fatalf("error writing to file: %v", err)
+	}
+
+	log.Println("file appended")
 }
