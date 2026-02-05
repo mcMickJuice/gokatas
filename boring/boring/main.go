@@ -26,6 +26,6 @@ func main() {
 func say(msg string) {
 	for i := 0; ; i++ {
 		fmt.Printf("%s, %d\n", msg, i)
-		time.Sleep(time.Millisecond * time.Duration(rand.Intn(1e3)))
+		time.Sleep(time.Millisecond * time.Duration(rand.Int63n(1000)))
 	}
 }
