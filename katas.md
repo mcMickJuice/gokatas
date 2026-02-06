@@ -3,3 +3,4 @@
 - 2026-02-05: boring/channel
 - 2026-02-06: boring/channel
 - 2026-02-06: bytecounter
+- 2026-02-06: compress
