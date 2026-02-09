@@ -5,3 +5,5 @@
 - 2026-02-06: bytecounter
 - 2026-02-06: compress
 - 2026-02-06: boring/select
+- 2026-02-09: boring/select
+- 2026-02-09: counter
