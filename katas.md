@@ -11,3 +11,5 @@
 - 2026-02-09: countgo
 - 2026-02-10: parsejson
 - 2026-02-10: parsejson
+- 2026-02-10: fetch
+- 2026-02-10: fetch
